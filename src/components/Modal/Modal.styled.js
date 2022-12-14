@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalBackdrop = styled.div`
+  z-index: 1100;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +20,13 @@ export const ModalContent = styled.div`
   transform: translate(-50%, -50%);
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
-  padding: 10px;
   background-color: #ffffff;
   border-radius: 3px;
+`;
+
+export const ModalImage = styled.img`
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  z-index: 1100;
 `;

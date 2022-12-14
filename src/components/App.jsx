@@ -7,6 +7,7 @@ import Modal from './Modal';
 import Searchbar from './Searchbar';
 import fetchApi from './ImageApi';
 import ImageGallery from './ImageGallery';
+import Button from './Button';
 
 class App extends Component {
   state = {
@@ -102,7 +103,7 @@ class App extends Component {
         )}
         <ImageGallery images={images} onLargeImage={this.onImageClick} />
         {images.length !== 0 && totalPages !== 1 && (
-          <button className="Button" onClick={this.loadMoreImages}></button>
+          <Button onClick={this.loadMoreImages} />
         )}
         {loaderVisible && (
           <ThreeDots
