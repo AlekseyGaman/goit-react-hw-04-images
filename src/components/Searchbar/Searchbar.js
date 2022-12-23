@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
 import {
@@ -9,50 +9,47 @@ import {
   SearchFormInput,
 } from './Searchbar.styled';
 
-class Searchbar extends Component {
-  state = {
-    imageName: '',
+const Searchbar = ({ onSubmit }) => {
+  const [imageName, setImageName] = useState('');
+
+  const handleChange = event => {
+    setImageName(event.currentTarget.value.toLowerCase());
   };
 
-  handleChange = event => {
-    this.setState({ imageName: event.currentTarget.value.toLowerCase() });
-  };
-
-  handelSubmit = event => {
+  const handelSubmit = event => {
     event.preventDefault();
 
-    if (this.state.imageName.trim() === '') {
+    if (imageName.trim() === '') {
       toast.error('Oops, type something');
     }
-    this.props.onSubmit(this.state.imageName);
+    onSubmit(imageName);
 
-    // this.reset();
+    // reset();
   };
 
-  // reset = () => {
-  //   this.setState({ imageName: '' });
+  // const reset = () => {
+  //   setImageName('');
   // };
 
-  render() {
-    return (
-      <SearchbarHeader>
-        <SearchForm onSubmit={this.handelSubmit}>
-          <SearchFormButton type="submit">
-            <FaSearch size={30} />
-          </SearchFormButton>
+  return (
+    <SearchbarHeader>
+      <SearchForm onSubmit={handelSubmit}>
+        <SearchFormButton type="submit">
+          <FaSearch size={30} />
+        </SearchFormButton>
 
-          <SearchFormInput
-            type="search"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            onChange={this.handleChange}
-          />
-        </SearchForm>
-      </SearchbarHeader>
-    );
-  }
-}
+        <SearchFormInput
+          type="search"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          onChange={handleChange}
+        />
+      </SearchForm>
+    </SearchbarHeader>
+  );
+};
+
 export default Searchbar;
 
 Searchbar.propTypes = {
