@@ -60,11 +60,11 @@ const App = () => {
 
     const currentImage = Number(event.target.id);
     const currentItem = images.find(item => item.id === currentImage);
-    const modalData = {
+    const modalDataSrc = {
       src: currentItem.largeImageURL,
       alt: currentItem.tags,
     };
-    setModalData(modalData);
+    setModalData(modalDataSrc);
   };
 
   const loadMoreImages = () => {
